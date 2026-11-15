@@ -1,0 +1,147 @@
+{
+  "storymap": {
+    "language": "en",
+    "call_to_action": true,
+    "call_to_action_text": "Start the crawl",
+    "map_as_image": false,
+    "map_type": "osm:standard",
+    "slides": [
+      {
+        "type": "overview",
+        "date": "",
+        "text": {
+          "headline": "Knoxville Coffee Crawl",
+          "text": "<p>Five of the highest-rated coffee shops near UT and downtown Knoxville, from study spots on the Strip to riverside lattes in South Knoxville.</p><p>The stops run in order, moving outward from campus. Ratings are from Google Maps as of November 2026.</p>"
+        },
+        "media": {
+          "url": "",
+          "credit": "",
+          "caption": ""
+        },
+        "location": {
+          "line": true
+        }
+      },
+      {
+        "date": "",
+        "text": {
+          "headline": "Capybara Coffee",
+          "text": "<p>Tucked into University Commons, Capybara Coffee is about a five-minute walk from campus. Sadly, there are no real capybaras, but the vibes are adorable and the coffee is excellent.</p><p><b>Address:</b> 2457 University Commons Way<br><b>Rating:</b> 4.8/5 on Google Maps (Nov. 2026)</p>"
+        },
+        "media": {
+          "url": "",
+          "credit": "",
+          "caption": ""
+        },
+        "location": {
+          "use_custom_marker": true,
+          "icon": "images/coffee-pin.svg",
+          "iconSize": [
+            40,
+            52
+          ],
+          "line": true,
+          "zoom": 16,
+          "lat": 35.95093,
+          "lon": -83.93972
+        }
+      },
+      {
+        "date": "",
+        "text": {
+          "headline": "New Here Coffee",
+          "text": "<p>Right beneath The Hub apartments on the Strip, New Here is just a street away from campus and one of the best study spots in town.</p><p><b>Address:</b> 1915 Cumberland Ave.<br><b>Rating:</b> 4.2/5 on Google Maps (Nov. 2026)</p>"
+        },
+        "media": {
+          "url": "",
+          "credit": "",
+          "caption": ""
+        },
+        "location": {
+          "use_custom_marker": true,
+          "icon": "images/coffee-pin.svg",
+          "iconSize": [
+            40,
+            52
+          ],
+          "line": true,
+          "zoom": 16,
+          "lat": 35.95548,
+          "lon": -83.93608
+        }
+      },
+      {
+        "date": "",
+        "text": {
+          "headline": "Coffee 360",
+          "text": "<p>In the heart of Fort Sanders, Coffee 360 serves a wide variety of flavors and baked goods, a convenient stop for students who live off campus. It also partners with local apartment complexes on monthly &ldquo;Bagel Socials.&rdquo;</p><p><b>Rating:</b> 4.7/5 on Google Maps (Nov. 2026)</p>"
+        },
+        "media": {
+          "url": "",
+          "credit": "",
+          "caption": ""
+        },
+        "location": {
+          "use_custom_marker": true,
+          "icon": "images/coffee-pin.svg",
+          "iconSize": [
+            40,
+            52
+          ],
+          "line": true,
+          "zoom": 16,
+          "lat": 35.961103,
+          "lon": -83.935182
+        }
+      },
+      {
+        "date": "",
+        "text": {
+          "headline": "Jacks",
+          "text": "<p>On Gay Street at the edge of the Old City, Jacks has a vibe unlike any other coffee shop in the area. Along with coffee, it sells plants and other fun goods, and it has a second location on North Central Street.</p><p><b>Address:</b> 133 S. Gay St.<br><b>Rating:</b> 4.4/5 on Google Maps (Nov. 2026)</p>"
+        },
+        "media": {
+          "url": "",
+          "credit": "",
+          "caption": ""
+        },
+        "location": {
+          "use_custom_marker": true,
+          "icon": "images/coffee-pin.svg",
+          "iconSize": [
+            40,
+            52
+          ],
+          "line": true,
+          "zoom": 16,
+          "lat": 35.96814,
+          "lon": -83.92032
+        }
+      },
+      {
+        "date": "",
+        "text": {
+          "headline": "Honeybee Coffee Co.",
+          "text": "<p>Take a short trip across the river into South Knoxville and you&rsquo;ll find Honeybee Coffee Co., one of the best coffee shops outside of downtown. On top of great coffee, it has views of the river and a large lounge to enjoy your latte in. Hours have changed recently, so check before you go.</p><p><b>Address:</b> 700 Sevier Ave.<br><b>Rating:</b> 4.5/5 on Google Maps (Nov. 2026)</p>"
+        },
+        "media": {
+          "url": "",
+          "credit": "",
+          "caption": ""
+        },
+        "location": {
+          "use_custom_marker": true,
+          "icon": "images/coffee-pin.svg",
+          "iconSize": [
+            40,
+            52
+          ],
+          "line": true,
+          "zoom": 16,
+          "lat": 35.95737,
+          "lon": -83.90896
+        }
+      }
+    ]
+  }
+}

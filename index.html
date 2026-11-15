@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Knoxville Coffee Crawl</title>
+  <meta name="description" content="An interactive StoryMap of five of the highest-rated coffee shops near UT and downtown Knoxville, TN.">
+  <link rel="icon" href="images/coffee-pin.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.knightlab.com/libs/storymapjs/latest/css/storymap.css">
+  <style>
+    html, body { height: 100%; margin: 0; padding: 0; background: #ffffff; }
+    #storymap { width: 100%; height: 100vh; height: 100dvh; }
+    .vco-storymap .vco-slide .vco-slide-content-container .vco-slide-content .vco-text h2.vco-headline-title { color: #4a3424; }
+    .vco-storymap .vco-slide .vco-text p b { color: #6F4E37; }
+  </style>
+</head>
+<body>
+  <div id="storymap"></div>
+  <noscript>This StoryMap needs JavaScript to display.</noscript>
+  <script src="https://cdn.knightlab.com/libs/storymapjs/latest/js/storymap-min.js"></script>
+  <script>
+    fetch('storymap.json')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        window.storymap = new KLStoryMap.StoryMap('storymap', data, {
+          calculate_zoom: false,
+          start_at_slide: parseInt(new URLSearchParams(location.search).get('start_at_slide') || '0', 10)
+        });
+        window.addEventListener('resize', function () { window.storymap.updateDisplay(); });
+      });
+  </script>
+</body>
+</html>
