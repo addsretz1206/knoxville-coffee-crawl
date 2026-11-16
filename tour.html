@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Knoxville Coffee Crawl (Text Version)</title>
+  <meta name="description" content="Text-only, screen-reader-friendly version of the Knoxville Coffee Crawl StoryMap.">
+  <link rel="icon" href="images/coffee-pin.svg" type="image/svg+xml">
+  <style>
+    body { margin: 0; background: #fffdf9; color: #2b1d12; font: 18px/1.6 Georgia, "Times New Roman", serif; }
+    main { max-width: 46rem; margin: 0 auto; padding: 24px 16px 64px; }
+    h1 { color: #4a3424; line-height: 1.2; }
+    h2 { color: #4a3424; border-top: 1px solid #e2d4c3; padding-top: 24px; }
+    a { color: #7a4a1e; }
+    a:focus { outline: 3px solid #f2b84b; outline-offset: 2px; }
+    img { max-width: 100%; height: auto; }
+    figure { margin: 16px 0; }
+    figcaption { font-size: 0.9em; color: #5a4636; }
+    .rq { border-left: 4px solid #6F4E37; padding-left: 12px; }
+    .draft-notes { border: 2px dashed #b07d3a; background: #fff3dd; padding: 8px 16px; font-size: 0.9em; }
+    .skip { position: absolute; left: -9999px; }
+    .skip:focus { position: static; }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#tour">Skip to the tour</a>
+  <main>
+    <p><a href="index.html">&larr; Back to the interactive map</a></p>
+    <div id="tour" aria-live="polite">Loading the tour&hellip;</div>
+    <noscript><p>This page builds its content from <a href="storymap.json">storymap.json</a> and needs JavaScript.</p></noscript>
+  </main>
+  <script>
+    // Builds the page from storymap.json so it always matches the map.
+    fetch('storymap.json')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var out = document.getElementById('tour');
+        out.removeAttribute('aria-live');
+        out.innerHTML = '';
+        data.storymap.slides.forEach(function (s, i) {
+          var sec = document.createElement('section');
+          var h = document.createElement(i === 0 ? 'h1' : 'h2');
+          h.innerHTML = s.text.headline;
+          sec.appendChild(h);
+          var body = document.createElement('div');
+          body.innerHTML = s.text.text;
+          // The map's own link to this page isn't needed here.
+          body.querySelectorAll('a[href="tour.html"]').forEach(function (a) { a.parentNode.removeChild(a); });
+          sec.appendChild(body);
+          var m = s.media || {};
+          if (m.url) {
+            var fig = document.createElement('figure');
+            var img = document.createElement('img');
+            img.src = m.url;
+            img.alt = m.alt || '';
+            fig.appendChild(img);
+            if (m.caption || m.credit) {
+              var cap = document.createElement('figcaption');
+              cap.innerHTML = (m.caption || '') + (m.credit ? ' <span>(' + m.credit + ')</span>' : '');
+              fig.appendChild(cap);
+            }
+            sec.appendChild(fig);
+          }
+          out.appendChild(sec);
+        });
+      })
+      .catch(function () {
+        document.getElementById('tour').textContent = 'Could not load the tour data.';
+      });
+  </script>
+</body>
+</html>

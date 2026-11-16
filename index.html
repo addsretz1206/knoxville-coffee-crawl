@@ -4,24 +4,54 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Knoxville Coffee Crawl</title>
-  <meta name="description" content="An interactive StoryMap of five of the highest-rated coffee shops near UT and downtown Knoxville, TN.">
+  <meta name="description" content="An interactive StoryMap on the history of coffee in Knoxville, TN, and the coffee shops that shape the city's culture today.">
   <link rel="icon" href="images/coffee-pin.svg" type="image/svg+xml">
   <link rel="stylesheet" href="https://cdn.knightlab.com/libs/storymapjs/latest/css/storymap.css">
   <style>
     html, body { height: 100%; margin: 0; padding: 0; background: #ffffff; }
     #storymap { width: 100%; height: 100vh; height: 100dvh; }
     .vco-storymap .vco-slide .vco-slide-content-container .vco-slide-content .vco-text h2.vco-headline-title { color: #4a3424; }
+    .vco-storymap h2.vco-headline { color: #4a3424; }
     .vco-storymap .vco-slide .vco-text p b { color: #6F4E37; }
+    .vco-storymap .vco-text a { color: #7a4a1e; text-decoration: underline; }
+    .vco-storymap .vco-text .rq { border-left: 4px solid #6F4E37; padding-left: 10px; }
+    /* Temporary research notes: delete each box once the slide text is final */
+    .vco-storymap .vco-text .draft-notes { border: 2px dashed #b07d3a; background: #fff8ec; padding: 8px 12px; margin-top: 12px; font-size: 0.9em; }
+    .vco-storymap .vco-text .draft-notes .src { font-size: 0.85em; }
+    .text-version {
+      position: fixed; top: 8px; right: 8px; z-index: 1000;
+      background: #4a3424; color: #fff; padding: 6px 12px; border-radius: 4px;
+      font: 14px/1.4 system-ui, sans-serif; text-decoration: none;
+    }
+    .text-version:focus { outline: 3px solid #f2b84b; outline-offset: 2px; }
   </style>
 </head>
 <body>
-  <div id="storymap"></div>
-  <noscript>This StoryMap needs JavaScript to display.</noscript>
+  <a class="text-version" href="tour.html">Text-only version</a>
+  <div id="storymap" role="region" aria-label="Interactive map of the Knoxville coffee tour"></div>
+  <noscript>This StoryMap needs JavaScript. <a href="tour.html">Read the text-only version of the tour.</a></noscript>
   <script src="https://cdn.knightlab.com/libs/storymapjs/latest/js/storymap-min.js"></script>
   <script>
     fetch('storymap.json')
       .then(function (r) { return r.json(); })
       .then(function (data) {
+        // StoryMapJS has no alt-text field for slide images, so copy each slide's
+        // media.alt onto its rendered <img>.
+        var altBySrc = {};
+        data.storymap.slides.forEach(function (s) {
+          if (s.media && s.media.url && s.media.alt) altBySrc[s.media.url] = s.media.alt;
+        });
+        function applyAlt(root) {
+          root.querySelectorAll('img').forEach(function (img) {
+            var src = img.getAttribute('src') || '';
+            Object.keys(altBySrc).forEach(function (u) {
+              if (src.indexOf(u) !== -1 && img.alt !== altBySrc[u]) img.alt = altBySrc[u];
+            });
+          });
+        }
+        var el = document.getElementById('storymap');
+        new MutationObserver(function () { applyAlt(el); }).observe(el, { childList: true, subtree: true });
+
         window.storymap = new KLStoryMap.StoryMap('storymap', data, {
           calculate_zoom: false,
           start_at_slide: parseInt(new URLSearchParams(location.search).get('start_at_slide') || '0', 10)
