@@ -1,0 +1,141 @@
+/* Coffee-shop theme, shared by index.html and tour.html.
+   To change the look, edit the colors and fonts in :root. */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Karla:ital,wght@0,400;0,700;1,400&display=swap");
+
+:root {
+  color-scheme: dark;
+  --bg: #1f1410;         /* page background: espresso */
+  --panel: #2d1e17;      /* boxes */
+  --edge: #4d372b;       /* borders, dark buttons */
+  --heading: #f8ebd9;    /* headings: steamed milk */
+  --text: #e8d8c5;       /* body text */
+  --accent: #e5ad6d;     /* links, bold labels: caramel */
+  --button: #d3924f;     /* main button */
+  --on-button: #1f1410;  /* text on main button */
+  --matcha: #a3b07c;     /* small green accent */
+  --display: "Fraunces", Georgia, serif;
+  --body: "Karla", "Helvetica Neue", Arial, sans-serif;
+}
+
+html, body { background: var(--bg); }
+a:focus-visible, .text-version:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* ---------- Interactive map (index.html) ---------- */
+.vco-storymap, .vco-storymap .vco-text, .vco-storymap .vco-text p, .vco-storymap .vco-text li,
+.vco-storymap .vco-caption, .vco-storymap .vco-credit, .vco-storymap .vco-menubar-button,
+.vco-storymap .vco-slidenav-title, .vco-storymap .vco-slidenav-description {
+  font-family: var(--body);
+}
+.vco-storymap .vco-text, .vco-storymap .vco-text p, .vco-storymap .vco-text li { color: var(--text); }
+.vco-storymap .vco-text p, .vco-storymap .vco-text li { font-size: 16px; line-height: 1.55; }
+.vco-storymap .vco-slide .vco-slide-content-container .vco-slide-content .vco-text h2.vco-headline-title,
+.vco-storymap h2.vco-headline {
+  font-family: var(--display); font-weight: 600; letter-spacing: -0.01em; line-height: 1.12;
+  color: var(--heading);
+}
+.vco-storymap .vco-slide .vco-text h2.vco-headline::after {
+  content: ""; display: block; width: 64px; height: 3px; margin: 14px 0 12px; border-radius: 3px; background: var(--accent);
+}
+.vco-storymap .vco-slide .vco-text p b { color: var(--accent); }
+.vco-storymap .vco-text a { color: var(--accent); text-decoration: underline; }
+.vco-storymap .vco-text a:hover { color: var(--heading); }
+.vco-storymap .vco-caption, .vco-storymap .vco-credit { color: var(--text); }
+.vco-storymap .vco-media img { border-radius: 10px; }
+
+#storymap .vco-storyslider .vco-slider-background {
+  background: linear-gradient(to right, rgba(31, 20, 16, 0) 0%, rgba(31, 20, 16, 0.96) 15%) !important;
+}
+.vco-storymap .vco-map, .vco-storymap .vco-map .leaflet-container { background-color: var(--edge) !important; }
+/* Turn the street map into a dark-roast night map */
+.vco-storymap .vco-map-display .leaflet-tile-pane { filter: grayscale(1) invert(0.84) sepia(0.85) hue-rotate(-12deg) saturate(1.1) brightness(1.15); }
+/* Keep the map credit readable */
+.vco-storymap .leaflet-control-attribution, .vco-storymap .leaflet-control-attribution a { color: var(--text); }
+
+.vco-storymap .vco-slide-calltoaction .vco-slide-calltoaction-button-text {
+  background: var(--button); color: var(--on-button); font-family: var(--body); font-weight: 700;
+  border: 0; border-radius: 999px; text-shadow: none;
+}
+.vco-storymap .vco-slide-calltoaction:hover .vco-slide-calltoaction-button-text { background: var(--heading); color: var(--on-button); }
+.vco-storymap .vco-menubar .vco-menubar-button { background: var(--edge); color: var(--heading); }
+.vco-storymap .vco-menubar .vco-menubar-button + .vco-menubar-button { background: var(--button); color: var(--on-button); }
+.vco-storymap .vco-menubar .vco-menubar-button:hover { background: var(--heading); color: var(--on-button); }
+
+.text-version {
+  position: fixed; top: 10px; right: 12px; z-index: 1000;
+  background: var(--edge); color: var(--heading); padding: 6px 16px; border-radius: 999px;
+  font: 700 14px/1.4 var(--body); text-decoration: none;
+}
+/* Phones: keep clear of the StoryMap menu bar */
+@media (max-width: 640px) {
+  .text-version { top: auto; bottom: 10px; }
+  #storymap .vco-slide-content { padding-bottom: 56px; }
+}
+.text-version:hover { background: var(--heading); color: var(--on-button); }
+
+/* ---------- Shared content boxes ---------- */
+.rq, .vco-storymap .vco-text .rq {
+  background: var(--panel); border-left: 4px solid var(--matcha); border-radius: 0 10px 10px 0; padding: 12px 16px;
+}
+/* Temporary research notes: delete each box once the slide text is final */
+.draft-notes, .vco-storymap .vco-text .draft-notes {
+  background: var(--panel); border: 2px dashed var(--accent); border-radius: 10px; padding: 8px 16px; margin-top: 14px;
+}
+.vco-storymap .vco-text .draft-notes p, .vco-storymap .vco-text .draft-notes li { font-size: 14.5px; }
+.vco-storymap .vco-text p.src { font-size: 13px; }
+
+/* ---------- Text-only version (tour.html) ---------- */
+body.tour { margin: 0; color: var(--text); font: 18px/1.65 var(--body); }
+.tour main { max-width: 42rem; margin: 0 auto; padding: 32px 20px 72px; }
+.tour h1, .tour h2 { font-family: var(--display); font-weight: 600; color: var(--heading); line-height: 1.15; text-wrap: balance; }
+.tour h1 { font-size: clamp(2rem, 6vw, 2.9rem); }
+.tour h2 { font-size: 1.7rem; border-top: 2px solid var(--edge); padding-top: 32px; margin-top: 40px; }
+.tour b { color: var(--accent); }
+.tour a { color: var(--accent); }
+.tour a:hover { color: var(--heading); }
+.tour img { max-width: 100%; height: auto; border-radius: 10px; }
+.tour figure { margin: 20px 0; }
+.tour figcaption { font-size: 0.9em; }
+.tour .draft-notes { font-size: 0.9em; }
+.skip { position: absolute; left: -9999px; }
+.skip:focus { position: static; }
+
+/* Arrow boxes on wide screens */
+@media (min-width: 641px) {
+  #storymap .vco-slidenav-next, #storymap .vco-slidenav-previous,
+  #storymap .vco-slidenav-content-container { background-color: transparent; }
+  #storymap .vco-slidenav-icon { background-color: transparent; }
+  #storymap .vco-slidenav-icon::before { background-color: var(--edge) !important; }
+}
+
+/* ---------- Walking coffee cup (coffee-steps.js) ---------- */
+.coffee-cup, .coffee-print { position: absolute; pointer-events: none; transition: opacity 0.8s; }
+.coffee-cup { z-index: 100000; width: 48px; height: 56px; margin: -54px 0 0 -24px; transition: left 0.15s linear, top 0.15s linear, opacity 0.8s; }
+.coffee-print { z-index: -100000; width: 12px; height: 16px; margin: -8px 0 0 -6px; animation: bean-in 0.2s ease-out; }
+.coffee-cup.fading, .coffee-print.fading { opacity: 0; }
+.coffee-cup svg { display: block; overflow: visible; transform-origin: 50% 100%; }
+.coffee-cup.walking svg { animation: cup-waddle 0.3s ease-in-out infinite; }
+.coffee-cup.walking .leg-a { animation: cup-leg 0.3s ease-in-out infinite; }
+.coffee-cup.walking .leg-b { animation: cup-leg 0.3s ease-in-out -0.15s infinite; }
+.coffee-cup.arrived svg { animation: cup-hop 0.4s ease-out 2; }
+.coffee-cup .steam { animation: cup-steam 1s ease-in-out infinite alternate; }
+@keyframes bean-in { from { opacity: 0; transform: scale(0.3); } }
+@keyframes cup-waddle { 0%, 100% { transform: rotate(-7deg); } 25%, 75% { transform: translateY(-4px); } 50% { transform: rotate(7deg); } }
+@keyframes cup-leg { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes cup-hop { 40% { transform: translateY(-14px) scale(0.96, 1.06); } 100% { transform: translateY(0); } }
+@keyframes cup-steam { from { opacity: 0.3; transform: translateY(2px); } to { opacity: 1; transform: translateY(-2px); } }
+
+.tour .src { font-size: 0.85em; }
+
+/* Dark theme: remove StoryMapJS's light text shadows */
+#storymap .vco-text, #storymap .vco-text *, #storymap .vco-menubar-button, #storymap .vco-knightlab-brand { text-shadow: none !important; }
+#storymap .leaflet-control-attribution, #storymap .leaflet-control-attribution a,
+#storymap .vco-knightlab-brand, #storymap .vco-knightlab-brand a { color: var(--text) !important; text-shadow: 0 0 4px var(--bg) !important; }
+#storymap .vco-menubar { background: transparent; }
+/* Phone arrows: light enough to see on espresso */
+@media (max-width: 640px) {
+  #storymap .vco-slidenav-icon, #storymap .vco-slidenav-icon::before {
+    color: var(--accent) !important; opacity: 1 !important; text-shadow: none !important;
+  }
+  #storymap .vco-slidenav-next, #storymap .vco-slidenav-previous,
+  #storymap .vco-slidenav-content-container { opacity: 1 !important; }
+}
